@@ -14,51 +14,54 @@ var fetchedTable = {};
 );*/
 
 
-
-var invocation = new XMLHttpRequest();
-var url = htmlPageUrl;
-var invocationHistoryText;
-
-callOtherDomain();
-
-function callOtherDomain(){
-    if(invocation)
-    {    
-        invocation.open('GET', url, true);
-        invocation.onreadystatechange = handler;
-        invocation.send();
-        fetchData(invocation.getAllResponseHeaders()); 
-    }
-    else
-    {
-        invocationHistoryText = "No Invocation TookPlace At All";
-        var textNode = document.createTextNode(invocationHistoryText);
-        var textDiv = document.getElementById("textDiv");
-        textDiv.appendChild(textNode);
-    }
-    
-}
-function handler(evtXHR)
-{
-    if (invocation.readyState == 4)
-    {
-            if (invocation.status == 200)
-            {
-                var response = invocation.responseXML;
-                var invocationHistory = response.getElementsByTagName('invocationHistory').item(0).firstChild.data;
-                invocationHistoryText = document.createTextNode(invocationHistory);
-                var textDiv = document.getElementById("textDiv");
-                textDiv.appendChild(invocationHistoryText);
-                
-            }
-            else
-                alert("Invocation Errors Occured");
-    }
-    else
-        dump("currently the application is at" + invocation.readyState);
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
 }
 
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
 
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // All HTML5 Rocks properties support CORS.
+  
+
+  var xhr = createCORSRequest('GET', htmlPageUrl);
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    var title = getTitle(text);
+    alert('Response from CORS request to ' + htmlPageUrl + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+  console.log('Ho fatto qualcosa');
+}
+
+makeCorsRequest();
 
 
 function fetchData(htmlPage){
