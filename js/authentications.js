@@ -31,9 +31,9 @@ function handleAuthClick(event){
 
 function makeApiCall(){
   gapi.client.load('plus','v1',function(){
-    var request = gapi.client.plus.people.get(
+    var request = gapi.client.plus.people.get({
         'userId': 'me'
-      );
+      });
     request.execute(function(resp){
       var heading = document.createElement('h4');
       var image = document.createElement('img');
