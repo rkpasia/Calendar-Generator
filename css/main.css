@@ -1,4 +1,9 @@
-#button-access {
+.app-container {
+  width: 80%;
   margin: 0 auto; }
+  .app-container header {
+    margin-bottom: 20px; }
+  .app-container section {
+    margin-bottom: 20px; }
 
 /*# sourceMappingURL=main.css.map */
