@@ -2,7 +2,7 @@ var clientId = '221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercon
 
 var apiKey = 'AIzaSyAT9joTNAhFULvcoF95PgGv6_vs_3bdaq8';
 
-var scopes = 'https://www.googleapis.com/auth/plus.me';
+var scopes = 'https://www.googleapis.com/auth/calendar';
 
 function handleClientLoad(){
   gapi.client.setApiKey(apiKey);
@@ -30,18 +30,12 @@ function handleAuthClick(event){
 }
 
 function makeApiCall(){
-  gapi.client.load('plus','v1',function(){
-    var request = gapi.client.plus.people.get({
-        'userId': 'me'
+  gapi.client.load('calendar','v3',function(){
+    var request = gapi.client.request({
+        'path': ' https://www.googleapis.com/calendar/v3/users/me/calendarList'
       });
     request.execute(function(resp){
-      var heading = document.createElement('h4');
-      var image = document.createElement('img');
-      image.src = resp.image.url;
-      heading.appendChild(image);
-      heading.appendChild(document.createTextNode(resp.displayName));
-
-      document.getElementById('content').appendChild(heading);
+      console.log(resp.items);
     });
   });  
 }
