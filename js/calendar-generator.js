@@ -32,17 +32,3 @@ function fetchData(htmlPage){
 	}
 	console.log(contentTable);
 }
-
-function signinCallback(authResult) {
-  if (authResult['access_token']) {
-    // Autorizzazione riuscita
-    // Nascondi il pulsante di accesso ora che l'utente è autorizzato. Ad esempio: 
-    document.getElementById('signinButton').setAttribute('style', 'display: none');
-  } else if (authResult['error']) {
-    // Si è verificato un errore.
-    // Possibili codici di errore:
-    //   "access_denied" - L'utente ha negato l'accesso alla tua app
-    //   "immediate_failed" - Impossibile eseguire l'accesso automatico dell'utente
-    // console.log('There was an error: ' + authResult['error']);
-  }
-}
