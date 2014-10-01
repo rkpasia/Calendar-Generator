@@ -1,43 +1,47 @@
-var access_token = "";
+var clientId = '221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercontent.com';
 
-$('#disconnectButton').click(disconnectUser);
+var apiKey = 'AIzaSyAT9joTNAhFULvcoF95PgGv6_vs_3bdaq8';
 
-function disconnectUser(access_token) {
-  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
-      access_token;
+var scopes = 'https://www.googleapis.com/auth/plus.me';
 
-  // Esecuzione di una richiesta GET asincrona.
-  $.ajax({
-    type: 'GET',
-    url: revokeUrl,
-    async: false,
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(nullResponse) {
-      // Esegui un'azione, l'utente è disconnesso
-      // La risposta è sempre indefinita.
-    },
-    error: function(e) {
-      // Gestione dell'errore
-      // console.log(e);
-      // Puoi indirizzare gli utenti alla disconnessione manuale in caso di esito negativo
-      // https://plus.google.com/apps
-    }
-  });
-  console.log('ho fatto qualcosa');
+function handleClientLoad(){
+  gapi.client.setApiKey(apiKey);
+  window.setTimeout(checkAuth,1);
 }
 
-function signinCallback(authResult) {
-  if (authResult['access_token']) {
-    // Autorizzazione riuscita
-    // Nascondi il pulsante di accesso ora che l'utente è autorizzato. Ad esempio: 
-    access_token = authResult['access_token'];
-    document.getElementById('signinButton').setAttribute('style', 'display: none');
-  } else if (authResult['error']) {
-    // Si è verificato un errore.
-    // Possibili codici di errore:
-    //   "access_denied" - L'utente ha negato l'accesso alla tua app
-    //   "immediate_failed" - Impossibile eseguire l'accesso automatico dell'utente
-    // console.log('There was an error: ' + authResult['error']);
+function checkAuth(){
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+}
+
+function handleAuthResult(authResult){
+  var authorizeButton = document.getElementById('authorize-button');
+  if (authResult && !authResult.error) {
+    authorizeButton.style.visibility = 'hidden';
+    makeApiCall();
+  } else {
+    authorizeButton.style.visibility = '';
+    authorizeButton.onclick = handleAuthClick;
   }
+}
+
+function handleAuthClick(event){
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+  return false;
+}
+
+function makeApiCall(){
+  gapi.client.load('plus','v1',function(){
+    var request = gapi.client.plus.people.get(
+        'userId': 'me'
+      );
+    request.execute(function(resp){
+      var heading = document.createElement('h4');
+      var image = document.createElement('img');
+      image.src = resp.image.url;
+      heading.appendChild(image);
+      heading.appendChild(document.createTextNode(resp.displayName));
+
+      document.getElementById('content').appendChild(heading);
+    });
+  });  
 }
