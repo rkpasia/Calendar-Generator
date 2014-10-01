@@ -31,11 +31,9 @@ function handleAuthClick(event){
 
 function makeApiCall(){
   gapi.client.load('calendar','v3',function(){
-    var request = gapi.client.request({
-        'path': ' https://www.googleapis.com/calendar/v3/users/me/calendarList'
-      });
+    var request = gapi.client.calendar.calendarList.list();
     request.execute(function(resp){
-      console.log(resp.items);
+      console.log(resp);
     });
   });  
 }
