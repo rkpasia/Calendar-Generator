@@ -3,6 +3,15 @@
 <head>
 	<title>Generatore Orario</title>
 </head>
+
+	<a href='#' onClick='login();'> click here to login </a>
+    <div id='uName'>Welcome  </div>
+    <img src='' id='imgHolder'/>
+
+
+    <a href="#" style="display:none" id="logoutText" target='myIFrame' onclick="myIFrame.location='https://www.google.com/accounts/Logout'; startLogoutPolling();return false;"> Click here to logout </a>
+    <iframe name='myIFrame' id="myIFrame" style='display:none'></iframe>
+
 	
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="calendar-generator.js"></script>
