@@ -1,0 +1,9 @@
+<form>
+	<label for="calendarName">Inserisci il nome del calendario</label>
+	<input name="calendarName" type="text">
+	<label for="course">Seleziona il corso</label>
+	<select name="course" id="course-selector">
+		<option value="Curricula/Tecnologiewebemultimediali_LaureatriennaleDM270_2_Corsogenerico_726.html">TWM</option>
+	</select>
+	<input type="submit">
+</form>

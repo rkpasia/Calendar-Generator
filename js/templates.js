@@ -1,6 +1,16 @@
-var view = {
-  title: "Joe"
-};
+function authorizationTemplate(){
+	$.get('templates/authorization-template.mst',function(template){
+		var rend = Mustache.render(template);
+		$('.app-container section').append(rend).addClass('info-authorization');
+	});
+}
 
-var output = Mustache.to_html("{{ title }}", view);
-//$('body').html(output);
+
+function generationTemplate(){
+	$('.info-authorization').empty().removeClass('info-authorization');
+	$.get('templates/creation-template.mst', function(template){
+		var rend = Mustache.render(template);
+		$('.app-container section').append(rend).addClass('calendar-creation');
+	});
+
+}

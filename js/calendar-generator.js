@@ -1,5 +1,3 @@
-var htmlPageUrl = "Curricula/Tecnologiewebemultimediali_LaureatriennaleDM270_2_Corsogenerico_726.html";
-
 $.get(
 	htmlPageUrl,
 	function(data){

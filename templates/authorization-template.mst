@@ -1,0 +1,4 @@
+<p>
+	Benvenuto, per creare il tuo calendario devi disporre di un account <strong>google</strong> e consentire all'applicazione di accedere ai tuoi calendari.
+</p>
+<button id="authorize-button">Authorize</button>

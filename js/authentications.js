@@ -16,9 +16,9 @@ function checkAuth(){
 function handleAuthResult(authResult){
   var authorizeButton = document.getElementById('authorize-button');
   if (authResult && !authResult.error) {
-    authorizeButton.style.visibility = 'hidden';
+    generationTemplate();
   } else {
-    authorizeButton.style.visibility = '';
+    authorizationTemplate();
     authorizeButton.onclick = handleAuthClick;
   }
 }
