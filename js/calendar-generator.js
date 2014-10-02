@@ -64,5 +64,5 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	var timeout = window.setTimeout(terminateTemplate();,10000);	
+	var timeout = window.setTimeout(terminateTemplate(),10000);	
 }
