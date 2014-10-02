@@ -64,7 +64,7 @@ function fetchData(htmlPage,resp){
 		}
 		startDate.setHours(startDate.getHours()+1);
 		endDate.setHours(endDate.getHours()+1);
-		startDate.setDate(startDate.getDate() - 4);
-		endDate.setDate(endDate.getDate() - 4);	
+		startDate.setDate(startDate.getDate() - 5);
+		endDate.setDate(endDate.getDate() - 5);	
 	}
 }
