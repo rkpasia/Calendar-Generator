@@ -33,20 +33,31 @@ function fetchData(htmlPage,resp){
 	var rows = $('table.timegrid tr',htmlPage).not('table.timegrid tr td table tbody tr');
 	var cols = $('table.timegrid tr td',htmlPage).not('table.timegrid tr td table tbody tr td');
 	var contentTable = [];
+
+	var currentDate = new Date(Date.now());
+	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),0,8,30,0);
+	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),0,9,30,0);
+
 	for(var i = 1; i < rows.length; i++){
-		contentTable[i] = [];
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-
-				var data = {
-					corso: $('.subject_pos1',cell).text(),
-					insegnante: $('.subject_pos2',cell).text(),
-					aula: $('.subject_pos3',cell).text()
-				};
-				contentTable[i][j] = data;
+				var req = gapi.client.calendar.events.insert({
+					calendarId: resp.id,
+					start: {
+						dateTime: startDate
+					},
+					end: {
+						dateTime: endDate
+					},
+					summary: $('.subject_pos1',cell).text(),
+					description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
+					location: $('.subject_pos3',cell).text()
+				});
+				req.execute();
 			}
 		}
+		startDate.setHours(startDate.getHours()+1);
+		endDate.setHours(endDate.getHours()+1);
 	}
-	console.log(contentTable);
 }
