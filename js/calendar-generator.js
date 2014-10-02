@@ -41,7 +41,7 @@ function fetchData(htmlPage,resp){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				var pause = window.setTimeout(createEvent(cell,resp,startDate,endDate),1500);
+				var pause = window.setTimeout(createEvent(cell,resp,startDate,endDate),2500);
 			}
 			
 			startDate.setDate(startDate.getDate() + 1);
@@ -52,7 +52,7 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	var timeout = window.setTimeout(terminateTemplate(),40000);	
+	var timeout = window.setTimeout(terminateTemplate(),60000);	
 }
 
 function createEvent(cell,resp,startDate,endDate){
