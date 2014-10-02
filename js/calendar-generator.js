@@ -41,7 +41,7 @@ function fetchData(htmlPage,resp){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				var pause = window.setTimeout(createEvent(cell),1500);
+				var pause = window.setTimeout(createEvent(cell,resp),1500);
 			}
 			
 			startDate.setDate(startDate.getDate() + 1);
@@ -55,7 +55,7 @@ function fetchData(htmlPage,resp){
 	var timeout = window.setTimeout(terminateTemplate(),40000);	
 }
 
-function createEvent(cell){
+function createEvent(cell,resp){
 	if(!($('.subject_pos1',cell).text() === "")){
 		var req = gapi.client.calendar.events.insert({
 			calendarId: resp.id,
