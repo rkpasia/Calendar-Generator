@@ -3,22 +3,33 @@ function calendarOptions(){
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
 	});
-	getData(values);
+	createCalendar(values);
 	return false;
 }
 
+function createCalendar(options){
+	gapi.client.load('calendar','v3',function(){
+		var req = gapi.client.calendars.insert({
+			'summary': options.calendarName
+		});
+		req.execute(function(resp){
+			fetchData(options.course,resp);
+		})
+	});
+}
 
-function getData(options){
+function getData(courseUrl){
 	$.get(
-		options.course,
+		courseUrl,
 		function(data){
 			console.log("Page Load Performed");
-			fetchData(data);
+			return data;
 		}
 	);
 }
 
-function fetchData(htmlPage){
+function fetchData(course,resp){
+	var htmlPage = getData(course);
 	var timeTable = $(htmlPage).find('table.timegrid');
 	var rows = $('table.timegrid tr',htmlPage).not('table.timegrid tr td table tbody tr');
 	var cols = $('table.timegrid tr td',htmlPage).not('table.timegrid tr td table tbody tr td');
@@ -28,6 +39,7 @@ function fetchData(htmlPage){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
+
 				var data = {
 					corso: $('.subject_pos1',cell).text(),
 					insegnante: $('.subject_pos2',cell).text(),
