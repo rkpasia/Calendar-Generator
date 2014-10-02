@@ -3,19 +3,16 @@ $('#create-calendar').submit(function(){
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
 	});
-	console.log(values);
+	getData(values);
 });
 
 
 function getData(options){
 	$.get(
-		htmlPageUrl,
+		options.course,
 		function(data){
-			console.log("//////////////////////////////////////////Load performed");
-
-			htmlPage = data;
-
-			fetchData(htmlPage);
+			console.log("Page Load Performed");
+			fetchData(data);
 		}
 	);
 }
