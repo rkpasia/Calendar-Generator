@@ -1,10 +1,11 @@
-$('#create-calendar').submit(function(){
+function calendarOptions(){
 	var values = {};
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
 	});
 	getData(values);
-});
+	return false;
+}
 
 
 function getData(options){
