@@ -9,7 +9,7 @@ function calendarOptions(){
 
 function createCalendar(options){
 	gapi.client.load('calendar','v3',function(){
-		var req = gapi.client.calendars.insert({
+		var req = gapi.client.calendar.calendars.insert({
 			'summary': options.calendarName
 		});
 		req.execute(function(resp){
