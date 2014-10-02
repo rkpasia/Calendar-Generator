@@ -14,8 +14,12 @@ function generationTemplate(){
 	});
 }
 
-function terminateTemplate(){
+function processingTemplate(){
+	var message = Mustache.render("<p><strong>L'applicazione sta processando la tua richiesta, attendi.</strong></p>");
 	$('.calendar-creation').empty().removeClass('calendar-creation');
+}
+
+function terminateTemplate(){
 	$.get('templates/terminate-template.mst', function(template){
 		var rend = Mustache.render(template);
 		$('.app-container section').append(rend).addClass('end-creation');

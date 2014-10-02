@@ -1,8 +1,4 @@
-var loadingButton;
-
 function calendarOptions(){
-	loadingButton =  Ladda.create(document.querySelector('.ladda-button'));
-	loadingButton.toggle();
 	var values = {};
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
@@ -68,6 +64,5 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	var timeout = window.setTimeout(loadingButton.toggle(),10000);
-	terminateTemplate();
+	var timeout = window.setTimeout(terminateTemplate();,10000);	
 }

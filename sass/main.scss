@@ -64,6 +64,19 @@ body {
 				border:1px solid #6D7277;
 				border-radius: 3px;
 			}
+			input[type="submit"]{
+				width:auto;
+				height:auto;
+				background:none;
+				border:none;
+				padding:10px;
+				box-shadow: none;
+				background-color:#2aca76;
+				color:white;
+				&:hover {
+					background-color: #38d683;
+				}
+			}
 			select{
 				width:45%;
 				height:25px;

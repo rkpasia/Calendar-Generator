@@ -1,4 +1,4 @@
-<form id="create-calendar">
+<form id="create-calendar" onsubmit="return false;">
 	<div class="input-field">
 		<label for="calendarName">Nome calendario</label>
 		<input name="calendarName" type="text">
@@ -95,6 +95,6 @@
 		</select>
 	</div>
 	<div class="input-field">
-		<button type="submit" onclick="calendarOptions();" class="ladda-button" data-style="expand-right" data-color="green"><span class="ladda-label">Crea</span><span class="ladda-spinner"></span></button>
+		<input type="submit" onclick="calendarOptions();" value="Crea">
 	</div>
 </form>
