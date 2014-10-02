@@ -36,12 +36,12 @@ function fetchData(htmlPage,resp){
 	var currentDate = new Date(Date.now());
 	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,8,30,0);
 	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,9,30,0);
-
+	var pause;
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				var pause = window.setTimeout(createEvent(cell,resp,startDate,endDate),2500);
+				pause = window.setTimeout(createEvent(cell,resp,startDate,endDate),5000);
 			}
 			
 			startDate.setDate(startDate.getDate() + 1);
