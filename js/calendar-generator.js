@@ -13,7 +13,8 @@ function createCalendar(options){
 			'summary': options.calendarName
 		});
 		req.execute(function(resp){
-			fetchData(options.course,resp);
+			var data = getData(options.course);
+			fetchData(data,resp);
 		})
 	});
 }
@@ -28,8 +29,7 @@ function getData(courseUrl){
 	);
 }
 
-function fetchData(course,resp){
-	var htmlPage = getData(course);
+function fetchData(htmlPage,resp){
 	var timeTable = $(htmlPage).find('table.timegrid');
 	var rows = $('table.timegrid tr',htmlPage).not('table.timegrid tr td table tbody tr');
 	var cols = $('table.timegrid tr td',htmlPage).not('table.timegrid tr td table tbody tr td');
