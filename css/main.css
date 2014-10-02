@@ -57,7 +57,8 @@ body {
       background-color: #2aca76;
       color: white; }
       .app-container #create-calendar .input-field input[type="submit"]:hover {
-        background-color: #38d683; }
+        background-color: #38d683;
+        cursor: pointer; }
     .app-container #create-calendar .input-field select {
       width: 45%;
       height: 25px;
