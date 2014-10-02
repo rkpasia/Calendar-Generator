@@ -1,4 +1,4 @@
-<form>
+<form id="create-calendar" onsubmit="return false">
 	<label for="calendarName">Inserisci il nome del calendario</label>
 	<input name="calendarName" type="text">
 	<label for="course">Seleziona il corso</label>

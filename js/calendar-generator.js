@@ -1,13 +1,24 @@
-$.get(
-	htmlPageUrl,
-	function(data){
-		console.log("//////////////////////////////////////////Load performed");
+$('#create-calendar').submit(function(){
+	var values = {};
+	$.each($('#create-calendar').serializeArray(), function(i,field){
+		values[field.name] = field.value;
+	});
+	console.log(values);
+});
 
-		htmlPage = data;
 
-		fetchData(htmlPage);
-	}
-);
+function getData(options){
+	$.get(
+		htmlPageUrl,
+		function(data){
+			console.log("//////////////////////////////////////////Load performed");
+
+			htmlPage = data;
+
+			fetchData(htmlPage);
+		}
+	);
+}
 
 function fetchData(htmlPage){
 	var timeTable = $(htmlPage).find('table.timegrid');
