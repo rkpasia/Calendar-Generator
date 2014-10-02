@@ -3,6 +3,7 @@ function calendarOptions(){
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
 	});
+	processingTemplate();
 	createCalendar(values);
 }
 
