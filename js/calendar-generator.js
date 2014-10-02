@@ -13,18 +13,17 @@ function createCalendar(options){
 			'summary': options.calendarName
 		});
 		req.execute(function(resp){
-			var data = getData(options.course);
-			fetchData(data,resp);
+			getData(options.course,resp);
 		})
 	});
 }
 
-function getData(courseUrl){
+function getData(courseUrl,resp){
 	$.get(
 		courseUrl,
 		function(data){
 			console.log("Page Load Performed");
-			return data;
+			fetchData(data,resp);
 		}
 	);
 }
