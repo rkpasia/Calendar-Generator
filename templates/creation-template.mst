@@ -95,6 +95,6 @@
 		</select>
 	</div>
 	<div class="input-field">
-		<button type="submit" class="ladda-button" data-style="expand-right" data-color="green"><span class="ladda-label">Crea</span><span class="ladda-spinner"></span></button>
+		<input type="submit" value="Crea">
 	</div>
 </form>
