@@ -8,7 +8,6 @@ function calendarOptions(){
 		values[field.name] = field.value;
 	});
 	createCalendar(values);
-	return false;
 }
 
 function createCalendar(options){
