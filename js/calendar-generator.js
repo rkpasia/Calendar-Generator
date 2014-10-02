@@ -41,7 +41,7 @@ function fetchData(htmlPage,resp){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				var pause = window.setTimeout(createEvent($(this)),1500);
+				var pause = window.setTimeout(createEvent(cell),1500);
 			}
 			
 			startDate.setDate(startDate.getDate() + 1);
