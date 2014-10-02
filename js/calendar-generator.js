@@ -35,29 +35,35 @@ function fetchData(htmlPage,resp){
 	var contentTable = [];
 
 	var currentDate = new Date(Date.now());
-	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),0,8,30,0);
-	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),0,9,30,0);
+	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),1,8,30,0);
+	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),1,9,30,0);
 
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				var req = gapi.client.calendar.events.insert({
-					calendarId: resp.id,
-					start: {
-						dateTime: startDate
-					},
-					end: {
-						dateTime: endDate
-					},
-					summary: $('.subject_pos1',cell).text(),
-					description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
-					location: $('.subject_pos3',cell).text()
-				});
-				req.execute();
+				if(!$('subject_pos1',cell).text() === ""){
+					var req = gapi.client.calendar.events.insert({
+						calendarId: resp.id,
+						start: {
+							dateTime: startDate
+						},
+						end: {
+							dateTime: endDate
+						},
+						summary: $('.subject_pos1',cell).text(),
+						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
+						location: $('.subject_pos3',cell).text()
+					});
+					req.execute();
+				}
 			}
+			startDate.setDate(startDate.getDate() + 1);
+			endDate.setDate(endDate.getDate() + 1);
 		}
 		startDate.setHours(startDate.getHours()+1);
 		endDate.setHours(endDate.getHours()+1);
+		startDate.setDate(startDate.getDate() - 5;
+		endDate.setDate(endDate.getDate() - 5);	
 	}
 }
