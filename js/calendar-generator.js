@@ -1,4 +1,7 @@
+var loadingButton = Ladda.create(document.querySelector('.ladda-button'));
+
 function calendarOptions(){
+	loadingButton.toggle();
 	var values = {};
 	$.each($('#create-calendar').serializeArray(), function(i,field){
 		values[field.name] = field.value;
@@ -22,7 +25,6 @@ function getData(courseUrl,resp){
 	$.get(
 		courseUrl,
 		function(data){
-			console.log("Page Load Performed");
 			fetchData(data,resp);
 		}
 	);
@@ -43,7 +45,6 @@ function fetchData(htmlPage,resp){
 			var cell = cols[j];
 			if($(cell).find('table')){
 				if(!($('.subject_pos1',cell).text() === "")){
-					console.log('event creates');
 					var req = gapi.client.calendar.events.insert({
 						calendarId: resp.id,
 						start: {
@@ -67,4 +68,6 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
+	var timeout = window.setTimeout(loadingButton.toggle(),10000);
+	terminateTemplate();
 }

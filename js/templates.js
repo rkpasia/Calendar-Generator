@@ -12,5 +12,12 @@ function generationTemplate(){
 		var rend = Mustache.render(template);
 		$('.app-container section').append(rend).addClass('calendar-creation');
 	});
+}
 
+function terminateTemplate(){
+	$('.calendar-creation').empty().removeClass('calendar-creation');
+	$.get('templates/terminate-template.mst', function(template){
+		var rend = Mustache.render(template);
+		$('.app-container section').append(rend).addClass('end-creation');
+	});
 }
