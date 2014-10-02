@@ -42,7 +42,8 @@ function fetchData(htmlPage,resp){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
-				if(!$('.subject_pos1',cell).text() === ""){
+				if(!($('.subject_pos1',cell).text() === "")){
+					console.log('event creates');
 					var req = gapi.client.calendar.events.insert({
 						calendarId: resp.id,
 						start: {
