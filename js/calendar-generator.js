@@ -1,6 +1,7 @@
-var loadingButton = Ladda.create(document.querySelector('.ladda-button'));
+var loadingButton;
 
 function calendarOptions(){
+	loadingButton =  Ladda.create(document.querySelector('.ladda-button'));
 	loadingButton.toggle();
 	var values = {};
 	$.each($('#create-calendar').serializeArray(), function(i,field){
