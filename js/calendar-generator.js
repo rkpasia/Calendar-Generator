@@ -36,6 +36,7 @@ function fetchData(htmlPage,resp){
 	var currentDate = new Date(Date.now());
 	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,8,30,0);
 	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,9,30,0);
+	var fineCalendario = new Date(115,0,23);
 
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
@@ -50,6 +51,9 @@ function fetchData(htmlPage,resp){
 						end: {
 							dateTime: endDate
 						},
+						recurrence: [
+						"RRULE:FREQ=WEEKLY;UNTIL="+fineCalendario.toISOString()
+						],
 						summary: $('.subject_pos1',cell).text(),
 						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
 						location: $('.subject_pos3',cell).text()
