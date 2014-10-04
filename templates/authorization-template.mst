@@ -1,4 +1,13 @@
 <p>
 	Benvenuto, per creare il tuo calendario devi disporre di un account <strong>google</strong> e consentire all'applicazione di accedere ai tuoi calendari.
 </p>
-<button id="authorize-button">Authorize</button>
+<span id="signinButton">
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/calendar">
+  </span>
+</span>

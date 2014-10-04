@@ -1,29 +1,30 @@
-var clientId = '221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercontent.com';
-
 var apiKey = 'AIzaSyAT9joTNAhFULvcoF95PgGv6_vs_3bdaq8';
+var access_token;
 
-var scopes = 'https://www.googleapis.com/auth/calendar';
-
-function handleClientLoad(){
-  gapi.client.setApiKey(apiKey);
-  window.setTimeout(checkAuth,1);
-}
-
-function checkAuth(){
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-}
-
-function handleAuthResult(authResult){
-  var authorizeButton = $('#authorize-button');
-  if (authResult && !authResult.error) {
+function signinCallback(authResult) {
+  if (authResult['access_token']) {
+    access_token = authResult['access_token'];
+    gapi.client.setApiKey(apiKey);
     generationTemplate();
-  } else {
-    authorizationTemplate();
-    authorizeButton.click(handleAuthClick);
+  } else if (authResult['error']) {
+    errorTemplate();
   }
 }
 
-function handleAuthClick(event){
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
-  return false;
+function logout(access_token){
+  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' +
+      access_token;
+  $.ajax({
+    type: 'GET',
+    url: revokeUrl,
+    async: false,
+    contentType: "application/json",
+    dataType: 'jsonp',
+    success: function(nullResponse) {
+      window.close();
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  });
 }

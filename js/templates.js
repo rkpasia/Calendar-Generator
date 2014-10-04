@@ -12,6 +12,9 @@ function generationTemplate(){
 		var rend = Mustache.render(template);
 		$('.app-container section').append(rend).addClass('calendar-creation');
 	});
+	var logoutButton = Mustache.render('<button id="logout-button">Logout</button>')
+	$('footer').append(logoutButton);
+	$('#logout-button').click(logout);
 }
 
 function processingTemplate(){
@@ -26,4 +29,10 @@ function terminateTemplate(){
 		var rend = Mustache.render(template);
 		$('.app-container section').append(rend).addClass('end-creation');
 	});
+}
+
+function errorTemplate(){
+	$('.app-container section').empty();
+	var message = Mustache.render("<p><strong><span class=\"error\">C'è stato un errore durante la richiesta di autenticazione, riprova.</span></strong></p><p><strong>Se fosse comparsa una richiesta di comparsa di popup acconsenti alla comparsa, serve all'autenticazione nell'applicazione</stong></p>");
+	$('.app-container section').append(message);
 }
