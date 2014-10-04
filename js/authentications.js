@@ -14,12 +14,12 @@ function checkAuth(){
 }
 
 function handleAuthResult(authResult){
-  var authorizeButton = document.getElementById('authorize-button');
+  var authorizeButton = $('#authorize-button');
   if (authResult && !authResult.error) {
     generationTemplate();
   } else {
     authorizationTemplate();
-    authorizeButton.onclick = handleAuthClick;
+    authorizeButton.click(handleAuthClick());
   }
 }
 

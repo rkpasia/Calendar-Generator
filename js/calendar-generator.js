@@ -44,15 +44,15 @@ function fetchData(htmlPage,resp){
 			if($(cell).find('table')){
 				if(!($('.subject_pos1',cell).text() === "")){
 					var req = gapi.client.calendar.events.insert({
-						calendarId: resp.id,
-						start: {
+						"calendarId": resp.id,
+						"start": {
 							dateTime: startDate
 						},
-						end: {
+						"end": {
 							dateTime: endDate
 						},
-						recurrence: [
-						"RRULE:FREQ=WEEKLY;UNTIL="+fineCalendario.toISOString()
+						"recurrence": [
+						"RRULE:FREQ=WEEKLY;UNTIL="+fineCalendario.getFullYear()+fineCalendario.getMonth()+fineCalendario.getDate()+"T230000Z"
 						],
 						summary: $('.subject_pos1',cell).text(),
 						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
