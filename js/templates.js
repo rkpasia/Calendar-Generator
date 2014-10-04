@@ -14,7 +14,7 @@ function generationTemplate(){
 	});
 	var logoutButton = Mustache.render('<button id="logout-button">Logout</button>')
 	$('footer').append(logoutButton);
-	$('#logout-button').click(logout);
+	$('#logout-button').click(logout(access_token));
 }
 
 function processingTemplate(){
