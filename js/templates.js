@@ -36,3 +36,9 @@ function errorTemplate(){
 	var message = Mustache.render("<p><strong><span class=\"error\">C'è stato un errore durante la richiesta di autenticazione, riprova.</span></strong></p><p><strong>Se fosse comparsa una richiesta di comparsa di popup acconsenti alla comparsa, serve all'autenticazione nell'applicazione</stong></p>");
 	$('.app-container section').append(message);
 }
+
+function logoutTemplate(){
+	$('.app-container section').empty();
+	var message = Mustache.render("<p><strong>Hai effettuato con successo il logout.</stong></p>");
+	$('.app-container section').append(message);
+}

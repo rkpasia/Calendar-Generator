@@ -7,7 +7,7 @@ function signinCallback(authResult) {
     gapi.client.setApiKey(apiKey);
     generationTemplate();
   } else if (authResult['error']) {
-    errorTemplate();
+    //errorTemplate();
   }
 }
 
@@ -21,7 +21,7 @@ function logout(access_token){
     contentType: "application/json",
     dataType: 'jsonp',
     success: function(nullResponse) {
-      window.close();
+      logoutTemplate();
     },
     error: function(e) {
       console.log(e);
