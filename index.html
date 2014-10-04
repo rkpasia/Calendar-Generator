@@ -10,7 +10,21 @@
 			<header>
 				<h1>Generatore Orario <small><em>beta</em></small></h1>
 			</header>		
-			<section></section>
+			<section class="info-authorization">
+				<p>
+					Benvenuto, per creare il tuo calendario devi disporre di un account <strong>google</strong> e consentire all'applicazione di accedere ai tuoi calendari.
+				</p>
+				<span id="signinButton">
+				  <span
+				    class="g-signin"
+				    data-callback="signinCallback"
+				    data-clientid="221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercontent.com"
+				    data-cookiepolicy="single_host_origin"
+				    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+				    data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/calendar">
+				  </span>
+				</span>
+			</section>
 			<footer>
 				<p><small>Creato da <a href="http://rkpasia.github.io"><em>Riccardo Pasianotto</em></a> per informazioni o richieste specifiche riguardanti gli orari <a href="mailto:riccardo.pasianotto@gmail.com">scrivimi</a>.</small></p>
 				<p><strong>Vuoi contribuire allo sviluppo? <iframe src="http://ghbtns.com/github-btn.html?user=rkpasia&repo=Calendar-Generator&type=fork"
