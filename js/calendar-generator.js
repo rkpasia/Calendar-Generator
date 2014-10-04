@@ -46,10 +46,12 @@ function fetchData(htmlPage,resp){
 					var req = gapi.client.calendar.events.insert({
 						"calendarId": resp.id,
 						"start": {
-							dateTime: startDate
+							dateTime: startDate,
+							timeZone: "Europe/Rome"
 						},
 						"end": {
-							dateTime: endDate
+							dateTime: endDate,
+							timeZone: "Europe/Rome"
 						},
 						"recurrence": [
 						"RRULE:FREQ=WEEKLY;UNTIL="+fineCalendario.getFullYear()+fineCalendario.getMonth()+fineCalendario.getDate()+"T230000Z"
