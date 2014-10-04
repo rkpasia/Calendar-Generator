@@ -10,7 +10,7 @@ function handleClientLoad(){
 }
 
 function checkAuth(){
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
 }
 
 function handleAuthResult(authResult){
@@ -19,7 +19,7 @@ function handleAuthResult(authResult){
     generationTemplate();
   } else {
     authorizationTemplate();
-    authorizeButton.click(handleAuthClick());
+    authorizeButton.click(handleAuthClick);
   }
 }
 
