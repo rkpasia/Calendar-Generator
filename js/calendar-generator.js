@@ -40,28 +40,7 @@ function fetchData(htmlPage,resp){
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
-			if($(cell).find('table')){
-				if(!($('.subject_pos1',cell).text() === "")){
-					var req = gapi.client.calendar.events.insert({
-						"calendarId": resp.id,
-						"start": {
-							dateTime: startDate,
-							timeZone: "Europe/Rome"
-						},
-						"end": {
-							dateTime: endDate,
-							timeZone: "Europe/Rome"
-						},
-						"recurrence": [
-						"RRULE:FREQ=WEEKLY;UNTIL=20150123T230000Z"
-						],
-						summary: $('.subject_pos1',cell).text(),
-						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
-						location: $('.subject_pos3',cell).text()
-					});
-					req.execute();
-				}
-			}
+			window.setTimeout(function(){createEvent(cell,resp);},1000);
 			startDate.setDate(startDate.getDate() + 1);
 			endDate.setDate(endDate.getDate() + 1);
 		}
@@ -70,5 +49,30 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	var timeout = window.setTimeout(terminateTemplate(),90000);	
+	window.setTimeout(terminateTemplate,90000);	
+}
+
+function createEvent(cell,resp){
+	if($(cell).find('table')){
+		if(!($('.subject_pos1',cell).text() === "")){
+			var req = gapi.client.calendar.events.insert({
+				"calendarId": resp.id,
+				"start": {
+					dateTime: startDate,
+					timeZone: "Europe/Rome"
+				},
+				"end": {
+					dateTime: endDate,
+					timeZone: "Europe/Rome"
+				},
+				"recurrence": [
+				"RRULE:FREQ=WEEKLY;UNTIL=20150123T230000Z"
+				],
+				summary: $('.subject_pos1',cell).text(),
+				description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
+				location: $('.subject_pos3',cell).text()
+			});
+			req.execute();
+		}
+	}
 }
