@@ -40,7 +40,7 @@ function fetchData(htmlPage,resp){
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
-			window.setTimeout(createEvent,1000,cell,resp);
+			window.setTimeout(createEvent,1000,cell,resp,startDate,endDate);
 			startDate.setDate(startDate.getDate() + 1);
 			endDate.setDate(endDate.getDate() + 1);
 		}
@@ -52,7 +52,7 @@ function fetchData(htmlPage,resp){
 	window.setTimeout(terminateTemplate,90000);	
 }
 
-function createEvent(cell,resp){
+function createEvent(cell,resp,startDate,endDate){
 	if($(cell).find('table')){
 		if(!($('.subject_pos1',cell).text() === "")){
 			var req = gapi.client.calendar.events.insert({
