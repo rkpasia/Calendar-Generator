@@ -40,7 +40,7 @@ function fetchData(htmlPage,resp){
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
-			window.setTimeout(function(){createEvent(cell,resp);},1000);
+			window.setTimeout(createEvent,1000,cell,resp);
 			startDate.setDate(startDate.getDate() + 1);
 			endDate.setDate(endDate.getDate() + 1);
 		}
