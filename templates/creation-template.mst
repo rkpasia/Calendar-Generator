@@ -1,3 +1,4 @@
+<p>Attualmente sono presenti nel database soltanto i corsi del polo scientifico.</p>
 <form id="create-calendar" onsubmit="return false;">
 	<div class="input-field">
 		<label for="calendarName">Nome calendario</label>
