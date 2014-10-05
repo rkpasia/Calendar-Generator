@@ -74,13 +74,13 @@ function fetchData(htmlPage,resp){
 	terminateTemplate();
 }
 
-function createEvents(i,reqObjects){
+function createEvents(i,reqObjects){	
 	if(!(reqObjects.length == i)){
 		reqObjects[i].execute(function(resp){
 			if(resp.error){
-				createEvents(i);
+				createEvents(i,reqObjects);
 			}else{
-				createEvents(i+1);
+				createEvents(i+1,reqObjects);
 			}
 		});
 	}else{
