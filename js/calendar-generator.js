@@ -28,14 +28,14 @@ function getData(courseUrl,resp){
 }
 
 function fetchData(htmlPage,resp){
-	var timeTable = $(htmlPage).find('table.timegrid');
 	var rows = $('table.timegrid tr',htmlPage).not('table.timegrid tr td table tbody tr');
 	var cols = $('table.timegrid tr td',htmlPage).not('table.timegrid tr td table tbody tr td');
-	var contentTable = [];
 
 	var currentDate = new Date(Date.now());
 	var startDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,8,30,0);
 	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,9,30,0);
+
+	var reqObjects = [];
 
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
@@ -59,7 +59,7 @@ function fetchData(htmlPage,resp){
 						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
 						location: $('.subject_pos3',cell).text()
 					});
-					req.execute();
+					reqObjects.push(req);
 				}
 			}
 			startDate.setDate(startDate.getDate() + 1);
@@ -70,5 +70,20 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	window.setTimeout(terminateTemplate,60000);	
+	createEvents(0);
+	terminateTemplate();
+}
+
+function createEvents(i){
+	if(!(reqObjects.length == i)){
+		reqObjects[i].execute(function(resp){
+			if(resp.error){
+				createEvents(i);
+			}else{
+				createEvents(i+1);
+			}
+		});
+	}else{
+		return;
+	}
 }
