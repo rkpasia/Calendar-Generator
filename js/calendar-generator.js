@@ -60,7 +60,6 @@ function fetchData(htmlPage,resp){
 						description: 'Professore del corso: ' + $('.subject_pos2',cell).text(),
 						location: $('.subject_pos3',cell).text()
 					});
-					console.log(req);
 					reqObjects.push(req);
 				}
 			}
@@ -72,7 +71,6 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	console.log(reqObjects);
 	createEvents(0,reqObjects);
 }
 
