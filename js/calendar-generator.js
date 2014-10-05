@@ -70,11 +70,11 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
-	createEvents(0);
+	createEvents(0,reqObjects);
 	terminateTemplate();
 }
 
-function createEvents(i){
+function createEvents(i,reqObjects){
 	if(!(reqObjects.length == i)){
 		reqObjects[i].execute(function(resp){
 			if(resp.error){
