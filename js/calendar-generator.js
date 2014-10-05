@@ -46,11 +46,11 @@ function fetchData(htmlPage,resp){
 					req = gapi.client.calendar.events.insert({
 						"calendarId": resp.id,
 						"start": {
-							dateTime: startDate,
+							dateTime: startDate.toISOString(),
 							timeZone: "Europe/Rome"
 						},
 						"end": {
-							dateTime: endDate,
+							dateTime: endDate.toISOString(),
 							timeZone: "Europe/Rome"
 						},
 						"recurrence": [
