@@ -36,13 +36,14 @@ function fetchData(htmlPage,resp){
 	var endDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()-currentDate.getDay()+1,9,30,0);
 
 	var reqObjects = [];
+	var req;
 
 	for(var i = 1; i < rows.length; i++){
 		for(var j = (i * 6)+1; j < (i*6)+6; j++){
 			var cell = cols[j];
 			if($(cell).find('table')){
 				if(!($('.subject_pos1',cell).text() === "")){
-					var req = gapi.client.calendar.events.insert({
+					req = gapi.client.calendar.events.insert({
 						"calendarId": resp.id,
 						"start": {
 							dateTime: startDate,
@@ -70,8 +71,8 @@ function fetchData(htmlPage,resp){
 		startDate.setDate(startDate.getDate() - 5);
 		endDate.setDate(endDate.getDate() - 5);	
 	}
+	console.log(reqObjects);
 	createEvents(0,reqObjects);
-	terminateTemplate();
 }
 
 function createEvents(i,reqObjects){	
@@ -84,6 +85,6 @@ function createEvents(i,reqObjects){
 			}
 		});
 	}else{
-		return;
+		terminateTemplate();
 	}
 }
