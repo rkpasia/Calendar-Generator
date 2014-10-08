@@ -33,7 +33,7 @@ function terminateTemplate(){
 
 function errorTemplate(){
 	$('.app-container section').empty();
-	var message = Mustache.render("<p><strong><span class=\"error\">C'è stato un errore durante la richiesta di autenticazione, riprova.</span></strong></p><p><strong>Se fosse comparsa una richiesta di comparsa di popup acconsenti alla comparsa, serve all'autenticazione nell'applicazione</stong></p>");
+	var message = Mustache.render("<p><strong><span class=\"error\">C'è stato un errore durante la tua richiesta, riprova.</span></strong></p><p><strong>Se fosse comparsa una richiesta di comparsa di popup acconsenti alla comparsa, serve all'autenticazione nell'applicazione</stong></p>");
 	$('.app-container section').append(message);
 }
 

@@ -13,7 +13,11 @@ function createCalendar(options){
 			'summary': options.calendarName
 		});
 		req.execute(function(resp){
-			getData(options.course,resp);
+			if(resp.error){
+				errorTemplate();
+			}else{
+				getData(options.course,resp);
+			}
 		})
 	});
 }
@@ -78,7 +82,11 @@ function createEvents(i,reqObjects){
 	if(!(reqObjects.length == i)){
 		reqObjects[i].execute(function(resp){
 			if(resp.error){
-				createEvents(i,reqObjects);
+				if(resp.error.code == 500){
+					createEvents(i,reqObjects);
+				}else{
+					errorTemplate();
+				}
 			}else{
 				createEvents(i+1,reqObjects);
 			}
