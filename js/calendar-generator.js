@@ -29,7 +29,7 @@ function createCalendar(options){
 
 function getData(courseUrl,resp){
 	$.get(
-		courseUrl,
+		'/Calendar-Generator/'+courseUrl,
 		function(data){
 			fetchData(data,resp);
 		}
