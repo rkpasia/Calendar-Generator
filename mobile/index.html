@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generatore Orario</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="css/ratchet.min.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+	<body>
+		<main class="app-container">
+			<header class="bar bar-nav">
+				<h1 class="title">Generatore Orario</h1>
+				<a href="#info"><span class="icon icon-info pull-right"></span></a>
+			</header>		
+			<section class="content info-authorization">
+				<p class="content-padded">
+					Benvenuto, per creare il tuo calendario devi disporre di un account <strong>google</strong> e consentire all'applicazione di accedere ai tuoi calendari.
+				</p>
+				<div class="g-button">
+					<span id="signinButton">
+					  <span
+					    class="g-signin"
+					    data-callback="signinCallback"
+					    data-clientid="221078581487-oph0qts3kh9bfppciv3u3r9h87liugdo.apps.googleusercontent.com"
+					    data-cookiepolicy="single_host_origin"
+					    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+					    data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/calendar">
+					  </span>
+					</span>
+				</div>
+			</section>
+			<footer id="info" class="modal">
+				<header class="bar bar-nav">
+					<a href="#info" class="icon icon-close pull-right"></a>
+					<h1 class="title">About this application</h1>
+				</header>
+				<div class="content">
+					<p class="content-padded">Creato da <a href="http://rkpasia.github.io"><em>Riccardo Pasianotto</em></a> per informazioni o richieste specifiche riguardanti gli orari <a href="mailto:riccardo.pasianotto@gmail.com">scrivimi</a>.</p>
+					<p class="content-padded"><strong>Vuoi contribuire allo sviluppo? 
+					<iframe src="http://ghbtns.com/github-btn.html?user=rkpasia&repo=Calendar-Generator&type=fork"
+	  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe></strong></p>
+	  				<p class="content-padded">Fai sapere anche ad altri dell'applicazione! <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fgeneratoreorariouniud&amp;width&amp;layout=button&amp;action=like&amp;show_faces=true&amp;share=false&amp;height=80&amp;appId=656373374447432" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe></p>
+				</div>
+			</footer>
+		</main>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/ratchet.min.js"></script>
+		<script src="/js/mustache.js"></script>
+		<script src="/js/authentications.js"></script>
+		<script src="/js/templates.js"></script>
+		<script src="/js/calendar-generator.js"></script>
+		<!--<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-51862292-4', 'auto');
+			ga('send', 'pageview');
+		</script>-->
+		<script type="text/javascript">
+	      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client:plusone.js';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	     })();
+	    </script>
+    </body>
+</html>

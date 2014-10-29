@@ -14,10 +14,10 @@ function createCalendar(options){
 		});
 		req.execute(function(resp){
 			if(resp.error){
-				if(resp.error.code == 400){
+				if(resp.error.code === 400){
 					errorTemplate("La tua richiesta non è andata a buon fine, ci sono stati dei problemi. Ti invitiamo a riprovare!");
 				}
-				if(resp.error.code == 401){
+				if(resp.error.code === 401){
 					errorTemplate("C'è stato un problema di autenticazione. Effettua il logout per sicurezza (a fondo pagina), successivamente ricarica la pagina e accedi nuovamente. Ci scusiamo per l'accaduto.");
 				}
 			}else{
